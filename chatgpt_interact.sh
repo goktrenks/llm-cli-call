@@ -1,10 +1,15 @@
 #!/bin/bash
 
-# Set your OpenAI API key
-API_KEY=<api_key>
-
 # The conversation file
 CONVERSATION_FILE="conversation.txt"
+
+# Check if the API key is set
+if [[ -z "$API_KEY" ]]; then
+  echo "Error: OpenAI API key not found!"
+  echo "Please set the API key by adding it to the script or exporting it as an environment variable:"
+  echo "  export API_KEY=<your_api_key_here>"
+  exit 1
+fi
 
 # Check if the conversation file exists
 if [[ ! -f "$CONVERSATION_FILE" ]]; then
