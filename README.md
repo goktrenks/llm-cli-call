@@ -62,8 +62,6 @@ Set the API key as an environment variable:
    $Env:API_KEY = "<your_api_key_here>"
    ```
 
-   Alternatively, you can set it permanently using the Windows environment variable settings.
-
 ---
 
 ### 3. Create a `conversation.txt` File
@@ -177,7 +175,3 @@ Alternatively, specify the model dynamically using an environment variable:
 ## License
 
 This project is licensed under the MIT License. Feel free to modify, enhance, and share it!
-
----
-
-This update includes a dedicated section for Windows users, detailing how to install and run the PowerShell script. Let me know if you need further refinements!
