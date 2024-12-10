@@ -6,12 +6,13 @@ This script allows you to interact with OpenAI's API using a simple text file (`
 
 - Talk to an LLM from the command line.
 - Sends your conversation history to OpenAI's API and appends the AI's response to the conversation file.
-- Fully customizable for different OpenAI models.
-
-
+- Can use different OpenAI models.
+- Supports Unix-Based Systems (Linux/macOS) with Bash and Powershell for Windows.
+  
 ## Requirements
 
-1. **Bash**: Compatible with Unix-based systems (Linux/macOS). For Windows, consider using WSL.
+### Unix-Based Systems (Linux/macOS)
+1. **Bash**: Compatible with Unix-based systems (Linux/macOS).
 2. **`jq`**: A command-line JSON processor.
 
    Install `jq` using:
@@ -24,6 +25,10 @@ This script allows you to interact with OpenAI's API using a simple text file (`
    brew install jq
    ```
 
+### Windows Systems
+1. **PowerShell**
+
+---
 
 ## Getting Started
 
@@ -36,14 +41,30 @@ git clone https://github.com/goktrenks/llm-cli-call.git
 cd llm-cli-call
 ```
 
+---
+
 ### 2. Set Up Your OpenAI API Key
 
-Export the API key as an environment variable for better security:
+#### Unix-Based Systems (Linux/macOS)
+Export the API key as an environment variable:
 
 ```bash
 export API_KEY=<your_api_key_here>
 ```
 
+#### Windows Systems
+Set the API key as an environment variable:
+
+1. Open PowerShell.
+2. Run the following command:
+
+   ```powershell
+   $Env:API_KEY = "<your_api_key_here>"
+   ```
+
+   Alternatively, you can set it permanently using the Windows environment variable settings.
+
+---
 
 ### 3. Create a `conversation.txt` File
 
@@ -57,18 +78,28 @@ Create a `conversation.txt` file in the same directory as the script. Use the fo
 - **`<user>`**: Contains your input.
 - **`<chatgpt>`**: Contains the AI's responses.
 
+---
 
 ### 4. Run the Script
 
+#### Unix-Based Systems
 Run the script with:
 
 ```bash
 bash script.sh
 ```
 
+#### Windows Systems
+Run the PowerShell script with:
+
+```powershell
+.\script.ps1
+```
+
 - The script reads the conversation history, sends it to OpenAI's API, and appends the response to `conversation.txt`.
 - If the file is missing or empty, the script will notify you and exit.
 
+---
 
 ## Example Workflow
 
@@ -80,9 +111,17 @@ bash script.sh
 
 2. Run the script:
 
-   ```bash
-   bash script.sh
-   ```
+   - For Unix-based systems:
+
+     ```bash
+     bash script.sh
+     ```
+
+   - For Windows systems:
+
+     ```powershell
+     .\script.ps1
+     ```
 
 3. The script sends your query to OpenAI's API and appends the response:
 
@@ -93,47 +132,52 @@ bash script.sh
 
 4. Add more queries as `<user>` entries and rerun the script to continue the conversation.
 
+---
 
 ## Changing the Model
 
-By default, the script uses the `gpt-4o-mini` model. You can change the model in the script by modifying this line:
+By default, the script uses the `gpt-4o-mini` model. You can change the model in the script:
+
+### Unix-Based Systems
+Modify this line in `script.sh`:
 
 ```bash
 "model": "gpt-4o-mini",
 ```
 
-For example:
-- To use GPT-4: `"model": "gpt-4",`
-- To use GPT-3.5-turbo: `"model": "gpt-3.5-turbo",`
+### Windows Systems
+Modify this line in `script.ps1`:
 
-Alternatively, you can dynamically specify the model using an environment variable:
+```powershell
+"model" = "gpt-4o-mini"
+```
 
+Alternatively, specify the model dynamically using an environment variable:
+
+#### Unix-Based Systems
 1. Export the model name:
 
    ```bash
    export OPENAI_MODEL=gpt-3.5-turbo
    ```
 
-2. Update the script to use `$OPENAI_MODEL`:
+2. Update the script to use `$OPENAI_MODEL`.
 
-   ```bash
-   "model": "'"$OPENAI_MODEL"'",
+#### Windows Systems
+1. Set the model name:
+
+   ```powershell
+   $Env:OPENAI_MODEL = "gpt-3.5-turbo"
    ```
 
-3. Now, you can change the model by updating the `OPENAI_MODEL` environment variable before running the script:
+2. Update the script to use `$Env:OPENAI_MODEL`.
 
-   ```bash
-   export OPENAI_MODEL=gpt-4
-   bash script.sh
-   ```
-
-## Notes
-
-- **Error Handling**: If no conversation context is found, or if the API does not return a response, the script exits with an error.
-- **Customizable**: Modify the script to meet your specific requirements, such as adding more API parameters or tweaking conversation formatting.
+---
 
 ## License
 
 This project is licensed under the MIT License. Feel free to modify, enhance, and share it!
 
+---
 
+This update includes a dedicated section for Windows users, detailing how to install and run the PowerShell script. Let me know if you need further refinements!
